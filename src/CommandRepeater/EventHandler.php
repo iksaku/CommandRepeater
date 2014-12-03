@@ -36,6 +36,7 @@ class EventHandler implements Listener{
     public function onPlayerCommand(PlayerCommandPreprocessEvent $event){
         if(substr($event->getMessage(), 0, 1) === "/"){
             $command = explode(" ", substr($event->getMessage(), 1));
+            $command[0] = substr($event->getMessage(), 1);
             if($command[0] !== "repeat" && $command[0] !== "repeatcommand" && $command[0] !== "rcmd"){
                 $this->plugin->setLastCommand($event->getPlayer(), implode(" ", $command));
             }
