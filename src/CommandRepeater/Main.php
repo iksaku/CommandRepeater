@@ -38,7 +38,8 @@ class Main extends PluginBase{
      * @param $command
      */
     public function setLastCommand(CommandSender $sender, $command){
-        if($command !== "repeat" && $command !== "repeatcommand" && $command !== "rcmd"){
+        $cmd = explode(" ", $command);
+        if($command !== "repeat" && $command !== "repeatcommand" && $command !== "rcmd" && $this->getServer()->getCommandMap()->getCommand($cmd[0]) !== null){
                 $this->commands[$sender->getName()] = $command;
         }
     }

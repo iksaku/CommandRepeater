@@ -35,11 +35,7 @@ class EventHandler implements Listener{
      */
     public function onPlayerCommand(PlayerCommandPreprocessEvent $event){
         if(substr($event->getMessage(), 0, 1) === "/"){
-            $command = explode(" ", substr($event->getMessage(), 1));
-            $command[0] = substr($event->getMessage(), 1);
-            if($command[0] !== "repeat" && $command[0] !== "repeatcommand" && $command[0] !== "rcmd"){
-                $this->plugin->setLastCommand($event->getPlayer(), implode(" ", $command));
-            }
+            $this->plugin->setLastCommand($event->getPlayer(), substr($event->getMessage(), 1));
         }
     }
 
@@ -47,19 +43,13 @@ class EventHandler implements Listener{
      * @param ServerCommandEvent $event
      */
     public function onConsoleCommand(ServerCommandEvent $event){
-        $command = explode(" ", $event->getCommand());
-        if($command[0] !== "repeat" && $command[0] !== "repeatcommand" && $command[0] !== "rcmd"){
-            $this->plugin->setLastCommand($event->getSender(), $event->getCommand());
-        }
+        $this->plugin->setLastCommand($event->getSender(), $event->getCommand());
     }
 
     /**
      * @param RemoteServerCommandEvent $event
      */
     public function onRconCommand(RemoteServerCommandEvent $event){
-        $command = explode(" ", $event->getCommand());
-        if($command[0] !== "repeat" && $command[0] !== "repeatcommand" && $command[0] !== "rcmd"){
-            $this->plugin->setLastCommand($event->getSender(), $event->getCommand());
-        }
+        $this->plugin->setLastCommand($event->getSender(), $event->getCommand());
     }
 } 
